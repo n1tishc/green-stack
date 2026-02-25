@@ -1,0 +1,9 @@
+id,service,region,usageKwh,costUSD,date,description
+c1,EC2,us-east-1,12.4,48.30,2026-01-01,m5.xlarge prod web server
+c2,EC2,ap-southeast-1,8.7,36.10,2026-01-08,t3.xlarge Singapore API
+c3,Lambda,us-east-1,2.8,4.20,2026-01-03,Image processing function
+c4,Lambda,eu-central-1,3.1,4.80,2026-01-07,Email notification handler
+c5,S3,us-east-1,0.8,12.40,2026-01-02,Media asset bucket
+c6,RDS,us-east-1,7.6,82.00,2026-01-04,PostgreSQL db.r5.large
+c7,EC2,us-west-2,9.2,34.50,2026-01-10,m5.large Oregon app server
+c8,Lambda,us-west-2,1.4,2.10,2026-01-15,Data aggregation job

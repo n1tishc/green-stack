@@ -1,0 +1,19 @@
+{
+  "resources": [
+    { "id": "s1",  "service": "EC2",    "region": "us-east-1",     "usageKwh": 12.4, "costUSD": 48.30, "date": "2026-01-01", "description": "m5.xlarge prod web server" },
+    { "id": "s2",  "service": "EC2",    "region": "us-east-1",     "usageKwh": 10.1, "costUSD": 39.20, "date": "2026-01-05", "description": "m5.large staging server" },
+    { "id": "s3",  "service": "EC2",    "region": "ap-southeast-1","usageKwh": 8.7,  "costUSD": 36.10, "date": "2026-01-08", "description": "t3.xlarge Singapore API" },
+    { "id": "s4",  "service": "EC2",    "region": "us-west-2",     "usageKwh": 9.2,  "costUSD": 34.50, "date": "2026-01-10", "description": "m5.large Oregon app server" },
+    { "id": "s5",  "service": "Lambda", "region": "us-east-1",     "usageKwh": 2.8,  "costUSD": 4.20,  "date": "2026-01-03", "description": "Image processing function" },
+    { "id": "s6",  "service": "Lambda", "region": "eu-central-1",  "usageKwh": 3.1,  "costUSD": 4.80,  "date": "2026-01-07", "description": "Email notification handler" },
+    { "id": "s7",  "service": "Lambda", "region": "ap-northeast-1","usageKwh": 1.9,  "costUSD": 2.90,  "date": "2026-01-12", "description": "Auth token validator" },
+    { "id": "s8",  "service": "Lambda", "region": "us-west-2",     "usageKwh": 1.4,  "costUSD": 2.10,  "date": "2026-01-15", "description": "Data aggregation job" },
+    { "id": "s9",  "service": "S3",     "region": "us-east-1",     "usageKwh": 0.8,  "costUSD": 12.40, "date": "2026-01-02", "description": "Media asset bucket (2TB)" },
+    { "id": "s10", "service": "S3",     "region": "eu-west-1",     "usageKwh": 0.5,  "costUSD": 8.70,  "date": "2026-01-06", "description": "EU user uploads bucket" },
+    { "id": "s11", "service": "S3",     "region": "us-west-2",     "usageKwh": 0.3,  "costUSD": 5.20,  "date": "2026-01-09", "description": "Log archive bucket" },
+    { "id": "s12", "service": "RDS",    "region": "us-east-1",     "usageKwh": 7.6,  "costUSD": 82.00, "date": "2026-01-04", "description": "PostgreSQL db.r5.large" },
+    { "id": "s13", "service": "RDS",    "region": "eu-central-1",  "usageKwh": 6.2,  "costUSD": 68.50, "date": "2026-01-11", "description": "MySQL db.r5.large Frankfurt" },
+    { "id": "s14", "service": "EC2",    "region": "ap-southeast-1","usageKwh": 11.3, "costUSD": 44.80, "date": "2026-01-13", "description": "GPU inference instance" },
+    { "id": "s15", "service": "Lambda", "region": "ap-southeast-1","usageKwh": 2.2,  "costUSD": 3.40,  "date": "2026-01-14", "description": "Real-time analytics pipeline" }
+  ]
+}
