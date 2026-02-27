@@ -4,6 +4,7 @@ import "./globals.css";
 import { DataProvider } from "@/context/DataContext";
 import { SimulatorProvider } from "@/context/SimulatorContext";
 import Sidebar from "@/components/Sidebar";
+import DarkModeToggle from "@/components/DarkModeToggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="flex min-h-screen">
               <Sidebar />
               <main className="flex-1 p-6 lg:p-8 overflow-auto">{children}</main>
+              <DarkModeToggle />
             </div>
           </SimulatorProvider>
         </DataProvider>

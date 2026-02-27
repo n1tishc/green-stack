@@ -1,6 +1,5 @@
 "use client";
 
-import { Card, Text } from "@tremor/react";
 import { Sliders, Zap, RotateCcw, TrendingDown } from "lucide-react";
 import { useSimulator } from "@/context/SimulatorContext";
 import { useData } from "@/context/DataContext";
@@ -26,7 +25,7 @@ export default function WhatIfSimulator() {
   if (!report || resources.length === 0) return null;
 
   return (
-    <Card className="dark:bg-slate-800 dark:border-slate-700" id="simulator">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 p-5 shadow-sm" id="simulator">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2">
@@ -52,9 +51,9 @@ export default function WhatIfSimulator() {
       </div>
 
       {!enabled && (
-        <Text className="text-sm text-gray-400 dark:text-slate-500">
+        <p className="text-sm text-gray-400 dark:text-slate-500">
           Toggle the simulator to model alternative deployments without changing your actual infrastructure.
-        </Text>
+        </p>
       )}
 
       {enabled && (
@@ -174,6 +173,6 @@ export default function WhatIfSimulator() {
           </div>
         </div>
       )}
-    </Card>
+    </div>
   );
 }

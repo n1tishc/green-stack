@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Card, Text } from "@tremor/react";
 import { Copy, Check, Award } from "lucide-react";
 import { computeGreenScore } from "@/lib/greenscore";
 import type { FootprintReport } from "@/types";
@@ -80,7 +79,7 @@ export default function GreenBadge({ report }: Props) {
   const gs = computeGreenScore(report);
 
   return (
-    <Card className="dark:bg-slate-800 dark:border-slate-700" id="badge">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 p-5 shadow-sm" id="badge">
       <div className="flex items-center gap-2 mb-4">
         <Award className="text-emerald-500 w-5 h-5" />
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white">GreenScore Badge</h2>
@@ -95,9 +94,9 @@ export default function GreenBadge({ report }: Props) {
             <span className={`text-4xl font-black ${gradeColors[gs.grade]}`}>{gs.grade}</span>
             <span className="text-xs text-gray-400 dark:text-slate-500 font-medium">{gs.score}/100</span>
           </div>
-          <Text className="text-xs text-gray-500 dark:text-slate-400">
+          <p className="text-xs text-gray-500 dark:text-slate-400">
             Avg {Math.round(gs.weightedIntensity)} gCO₂/kWh
-          </Text>
+          </p>
         </div>
 
         {/* Badge + YAML */}
@@ -129,6 +128,6 @@ export default function GreenBadge({ report }: Props) {
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Leaf, DollarSign, Zap, Upload, BarChart3, Moon, Sun, Sliders, Code2 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Leaf, DollarSign, Zap, Upload, BarChart3, Sliders, Code2 } from "lucide-react";
+import { useState } from "react";
 
 const NAV_SECTIONS = [
   {
@@ -35,23 +35,7 @@ const NAV_SECTIONS = [
 ];
 
 export default function Sidebar() {
-  const [dark, setDark] = useState(false);
   const [activeId, setActiveId] = useState("dashboard");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark") {
-      document.documentElement.classList.add("dark");
-      setDark(true);
-    }
-  }, []);
-
-  const toggleDark = () => {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    localStorage.setItem("theme", next ? "dark" : "light");
-  };
 
   return (
     <aside className="w-64 hidden lg:flex flex-col bg-white dark:bg-slate-900 border-r border-gray-100 dark:border-slate-800 min-h-screen">
@@ -116,22 +100,6 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      {/* Dark mode toggle */}
-      <div className="px-3 py-4 border-t border-gray-100 dark:border-slate-800">
-        <button
-          onClick={toggleDark}
-          className="group w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-800/70 hover:text-gray-900 dark:hover:text-slate-200 transition-all"
-        >
-          <div className="w-7 h-7 rounded-lg bg-gray-100 dark:bg-slate-800 group-hover:bg-gray-200 dark:group-hover:bg-slate-700 flex items-center justify-center transition-colors">
-            {dark ? (
-              <Sun className="w-3.5 h-3.5 text-amber-500" />
-            ) : (
-              <Moon className="w-3.5 h-3.5 text-gray-500" />
-            )}
-          </div>
-          {dark ? "Light Mode" : "Dark Mode"}
-        </button>
-      </div>
     </aside>
   );
 }
