@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
-import { Card, Text } from "@tremor/react";
 import { Code2, Upload as UploadIcon, AlertCircle, CheckCircle, Loader2 } from "lucide-react";
 import { useData } from "@/context/DataContext";
 import { parseTerraform } from "@/lib/terraform-parser";
@@ -89,12 +88,12 @@ export default function IaCUpload() {
             <Code2 className={`w-6 h-6 ${isDragging ? "text-emerald-600" : "text-gray-500 dark:text-slate-400"}`} />
           </div>
           <div className="flex-1">
-            <Text className="font-semibold text-gray-800 dark:text-white text-sm">
+            <p className="font-semibold text-gray-800 dark:text-white text-sm">
               Drop a <code>.tf</code> file or paste Terraform HCL below
-            </Text>
-            <Text className="text-xs text-gray-400 dark:text-slate-500">
+            </p>
+            <p className="text-xs text-gray-400 dark:text-slate-500">
               Supports <code>aws_instance</code>, <code>aws_lambda_function</code>, <code>aws_db_instance</code>, <code>aws_s3_bucket</code>
-            </Text>
+            </p>
           </div>
           <button
             onClick={() => inputRef.current?.click()}

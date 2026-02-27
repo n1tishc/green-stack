@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { CloudResource, GreenSuggestion } from "@/types";
+import { getRegionIntensity } from "@/lib/carbon";
 
 const SYSTEM_PROMPT = `You are a cloud sustainability expert. Given a list of cloud resources with their CO2 emissions, suggest specific actionable improvements to reduce carbon footprint and costs.
 
@@ -32,10 +33,8 @@ export async function POST(req: NextRequest) {
 
   // Take top 5 highest-carbon resources
   const topResources = [...resources]
-    .map((r) => ({ ...r, _co2: r.usageKwh * carbonIntensity(r.region) }))
-    .sort((a, b) => b._co2 - a._co2)
-    .slice(0, 5)
-    .map(({ _co2, ...r }) => r);
+    .sort((a, b) => b.usageKwh * getRegionIntensity(b.region) - a.usageKwh * getRegionIntensity(a.region))
+    .slice(0, 5);
 
   const userMessage = `Here are the top 5 highest-carbon cloud resources:
 
@@ -83,13 +82,3 @@ Provide green refactoring suggestions.`;
   }
 }
 
-function carbonIntensity(region: string): number {
-  const map: Record<string, number> = {
-    "us-east-1": 415, "us-east-2": 410, "us-west-1": 210, "us-west-2": 136,
-    "eu-west-1": 316, "eu-west-2": 228, "eu-west-3": 56, "eu-central-1": 338,
-    "eu-north-1": 8, "ap-southeast-1": 493, "ap-southeast-2": 760,
-    "ap-northeast-1": 506, "ap-northeast-2": 415, "ap-south-1": 708,
-    "sa-east-1": 68, "ca-central-1": 120,
-  };
-  return map[region] ?? 400;
-}

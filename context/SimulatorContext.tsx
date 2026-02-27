@@ -5,6 +5,8 @@ import type { FootprintReport } from "@/types";
 import { calculateFootprint } from "@/lib/carbon";
 import { useData } from "@/context/DataContext";
 
+const GRAVITON_EFFICIENCY = 0.8; // Graviton uses ~20% less power than x86
+
 // Quick-win target regions per current region prefix
 const QUICK_WIN_TARGETS: Record<string, string> = {
   "us-east-1": "us-west-2",
@@ -63,7 +65,7 @@ export function SimulatorProvider({ children }: { children: React.ReactNode }) {
       region: overrides[r.id] ?? r.region,
       usageKwh:
         graviton && r.service === "EC2"
-          ? r.usageKwh * 0.8
+          ? r.usageKwh * GRAVITON_EFFICIENCY
           : r.usageKwh,
     }));
     return calculateFootprint(simResources);

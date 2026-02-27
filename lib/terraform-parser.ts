@@ -25,8 +25,10 @@ const RDS_KWH: Record<string, number> = {
   "db.r5.large":   100,
 };
 
+const HOURS_PER_MONTH = 730;
+
 function wattsToMonthlyKwh(watts: number): number {
-  return (watts * 730) / 1000;
+  return (watts * HOURS_PER_MONTH) / 1000;
 }
 
 function extractDefaultRegion(content: string): string {

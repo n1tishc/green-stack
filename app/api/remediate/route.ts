@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { CloudResource, GreenSuggestion } from "@/types";
+import { getRegionIntensity } from "@/lib/carbon";
 
 export const dynamic = "force-dynamic";
 
@@ -42,10 +43,8 @@ export async function POST(req: NextRequest) {
 
   // Send only the top 5 highest-carbon resources to keep the prompt focused
   const top = [...resources]
-    .map((r) => ({ ...r, _co2: r.usageKwh * (INTENSITY[r.region] ?? 400) }))
-    .sort((a, b) => b._co2 - a._co2)
-    .slice(0, 5)
-    .map(({ _co2, ...r }) => r);
+    .sort((a, b) => b.usageKwh * getRegionIntensity(b.region) - a.usageKwh * getRegionIntensity(a.region))
+    .slice(0, 5);
 
   const userMessage = `
 Optimization suggestion to implement:
@@ -91,10 +90,3 @@ Generate the Terraform HCL that implements this optimization.`.trim();
   }
 }
 
-const INTENSITY: Record<string, number> = {
-  "us-east-1": 415, "us-east-2": 410, "us-west-1": 210, "us-west-2": 136,
-  "eu-west-1": 316, "eu-west-2": 228, "eu-west-3": 56, "eu-central-1": 338,
-  "eu-north-1": 8, "ap-southeast-1": 493, "ap-southeast-2": 760,
-  "ap-northeast-1": 506, "ap-northeast-2": 415, "ap-south-1": 708,
-  "sa-east-1": 68, "ca-central-1": 120,
-};
